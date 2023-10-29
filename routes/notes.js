@@ -1,5 +1,6 @@
 const notes = require("express").Router();
 const uuid = require("../helpers/uuid");
+const { readFromFile, writeToFile, addToJsonFile } = require("../helpers/fsUtils");
 const path = require("path");
 const fs = require("fs");
 
@@ -9,23 +10,23 @@ notes.get("/notes", (req, res) => {
 
 notes.post("/notes", (req, res) => {
     const { title, text } = req.body;
-    if (title && text) {
-      const newNote = {
+    if (!title || !text) {
+        console.log("Incomplete request data");
+        return;
+    }
+    const newNote = {
         title,
         text,
         id: uuid(),
     };
-    // readAndAppend(newNote, "./db/feedback.json");
-  
+    addToJsonFile(newNote, "./db/db.json");
+
     const response = {
         status: "success",
         body: newNote,
     };
 
     res.json(response);
-    } else {
-    res.json("Error in posting feedback");
-    }
 });
 
 module.exports = notes;

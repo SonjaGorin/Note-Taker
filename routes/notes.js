@@ -1,11 +1,13 @@
 const notes = require("express").Router();
 const uuid = require("../helpers/uuid");
+const path = require("path");
+const fs = require("fs");
 
 notes.get("/notes", (req, res) => {
     readFromFile("./db/db.json").then((data) => res.json(JSON.parse(data)));
 });
 
-notes.post("/", (req, res) => {
+notes.post("/notes", (req, res) => {
     const { title, text } = req.body;
     if (title && text) {
       const newNote = {
@@ -13,7 +15,7 @@ notes.post("/", (req, res) => {
         text,
         id: uuid(),
     };
-    readAndAppend(newNote, "./db/feedback.json");
+    // readAndAppend(newNote, "./db/feedback.json");
   
     const response = {
         status: "success",

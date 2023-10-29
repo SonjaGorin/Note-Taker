@@ -1,1 +1,17 @@
-[]
+[
+    {
+        "title": "Ice skating",
+        "text": "at Cardelrec on Saturday",
+        "id": "5db0"
+    },
+    {
+        "title": "Bootcamp",
+        "text": "Prepare for the next class",
+        "id": "0584"
+    },
+    {
+        "title": "Grocery shopping",
+        "text": "Bread, milk, eggs",
+        "id": "d2a3"
+    }
+]
